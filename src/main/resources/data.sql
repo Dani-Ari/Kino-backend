@@ -4,9 +4,9 @@ INSERT INTO theatre(name, rows, seats_per_row) VALUES
 
 INSERT INTO movie(title, duration, age_limit) VALUES
                                                    ('The Damnation', 111, 18),
-                                                   ('2 Nights at Teddy''s', 78, null),
+                                                   ('2 Nights at Teddy''s', 78, NULL),
                                                    ('Scream 8', 101, 16),
-                                                   ('The Mandalorian & Grogu', 163, null);
+                                                   ('The Mandalorian & Grogu', 163, NULL);
 
 INSERT INTO category(name) VALUES
                                ('Comedy'),
@@ -48,15 +48,15 @@ INSERT INTO customer(name, phone) VALUES
                                       ('Jeffrey Kennedy', '+92 1005 50002983');
 
 INSERT INTO reservation(customer_id, showing_id, reservation_time, status) VALUES
-                                                                               (1, 3, null, 'CANCELLED'),
-                                                                               (2, 2, null, 'CONFIRMED'),
-                                                                               (3, 1, null, 'CANCELLED'),
-                                                                               (4, 4, null, 'CONFIRMED'),
-                                                                               (5, 1, null, 'CONFIRMED'),
-                                                                               (6, 3, null, 'CONFIRMED'),
-                                                                               (7, 4, null, 'CONFIRMED'),
-                                                                               (8, 4, null, 'CONFIRMED'),
-                                                                               (9, 4, null, 'CONFIRMED');
+                                                                               (1, 3, NULL, 'CANCELLED'),
+                                                                               (2, 2, NULL, 'CONFIRMED'),
+                                                                               (3, 1, NULL, 'CANCELLED'),
+                                                                               (4, 4, NULL, 'CONFIRMED'),
+                                                                               (5, 1, NULL, 'CONFIRMED'),
+                                                                               (6, 3, NULL, 'CONFIRMED'),
+                                                                               (7, 4, NULL, 'CONFIRMED'),
+                                                                               (8, 4, NULL, 'CONFIRMED'),
+                                                                               (9, 4, NULL, 'CONFIRMED');
 
 INSERT INTO employee(role, name) VALUES
                            ('SALES', 'Frodo Andersen'),

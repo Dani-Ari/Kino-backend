@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS seat (
     theatre_id INT NOT NULL,
     row_number INT NOT NULL,
     seat_number INT NOT NULL,
-    FOREIGN KEY (theatre_id) REFERENCES theatre(id)
+    FOREIGN KEY (theatre_id) REFERENCES theatre(id),
+    UNIQUE (theatre_id, row_number, seat_number)
 );
 
 CREATE TABLE IF NOT EXISTS movie (
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS showing (
     id INT AUTO_INCREMENT PRIMARY KEY,
     movie_id INT NOT NULL,
     theatre_id INT NOT NULL,
-    start_time DATETIME NOT NULL,
+    start_time TIMESTAMP NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movie(id),
     FOREIGN KEY (theatre_id) REFERENCES theatre(id)
 );
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS reservation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
     showing_id INT NOT NULL,
-    reservation_time DATETIME,
+    reservation_time TIMESTAMP,
     status VARCHAR(20) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(id),
     FOREIGN KEY (showing_id) REFERENCES showing(id)
