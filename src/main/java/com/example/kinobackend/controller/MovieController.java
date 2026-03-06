@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
+@CrossOrigin(origins = "*") // TODO: restrict to frontend URL in production
 public class MovieController {
     private final MovieService movieService;
 
