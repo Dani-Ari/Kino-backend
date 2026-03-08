@@ -41,4 +41,10 @@ public class ShowingController {
         showingService.deleteShowing(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> cancelShowing(@PathVariable int id) {
+        showingService.cancelShowing(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS showing (
     movie_id INT NOT NULL,
     theatre_id INT NOT NULL,
     start_time TIMESTAMP NOT NULL,
+    status VARCHAR(20) DEFAULT 'ACTIVE',
     FOREIGN KEY (movie_id) REFERENCES movie(id),
     FOREIGN KEY (theatre_id) REFERENCES theatre(id)
 );
