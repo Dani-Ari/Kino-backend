@@ -32,4 +32,10 @@ public class ShowingService {
         }
         showingRepository.deleteById(id);
     }
+
+    public void cancelShowing(int id) {
+        Showing showing = showingRepository.findById(id).orElseThrow(() -> new RuntimeException(("Showing not found!")));
+        showing.setStatus("CANCELLED");
+        showingRepository.save(showing);
+    }
 }

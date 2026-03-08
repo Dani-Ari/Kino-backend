@@ -23,6 +23,8 @@ public class Showing {
     @Column(name = "start_time")
     private LocalDateTime startTime;
 
+    private String status = "ACTIVE";
+
     public int getId() {
         return id;
     }
@@ -53,5 +55,13 @@ public class Showing {
 
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
