@@ -25,4 +25,11 @@ public class ShowingService {
         }
         return showingRepository.save(showing);
     }
+
+    public void deleteShowing(int id) {
+        if (!showingRepository.existsById(id)) {
+            throw new RuntimeException("Showing not found");
+        }
+        showingRepository.deleteById(id);
+    }
 }

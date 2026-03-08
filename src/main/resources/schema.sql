@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS reservation (
     reservation_time TIMESTAMP,
     status VARCHAR(20) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(id),
-    FOREIGN KEY (showing_id) REFERENCES showing(id)
+    FOREIGN KEY (showing_id) REFERENCES showing(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ticket (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS ticket (
     seat_id INT NOT NULL,
     reservation_id INT,
     status VARCHAR(20) NOT NULL,
-    FOREIGN KEY (showing_id) REFERENCES showing(id),
+    FOREIGN KEY (showing_id) REFERENCES showing(id) ON DELETE CASCADE,
     FOREIGN KEY (seat_id) REFERENCES seat(id),
     FOREIGN KEY (reservation_id) REFERENCES reservation(id),
     UNIQUE (showing_id, seat_id)
