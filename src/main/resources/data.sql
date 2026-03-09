@@ -1,14 +1,10 @@
-INSERT INTO theatre(name, rows, seats_per_row) VALUES
-                                                   ('Large Theatre', 25, 16),
-                                                   ('Small Theatre', 20, 12);
-
-INSERT INTO movie(title, duration, age_limit) VALUES
+INSERT IGNORE INTO movie(title, duration, age_limit) VALUES
                                                    ('The Damnation', 111, 18),
                                                    ('2 Nights at Teddy''s', 78, NULL),
                                                    ('Scream 8', 101, 16),
                                                    ('The Mandalorian & Grogu', 163, NULL);
 
-INSERT INTO category(name) VALUES
+INSERT IGNORE INTO category(name) VALUES
                                ('Comedy'),
                                ('Action'),
                                ('Horror'),
@@ -17,7 +13,7 @@ INSERT INTO category(name) VALUES
                                ('Kids'),
                                ('Family');
 
-INSERT INTO movie_category(movie_id, category_id) VALUES
+INSERT IGNORE INTO movie_category(movie_id, category_id) VALUES
                                                       (1, 2),
                                                       (1, 3),
                                                       (1, 4),
@@ -30,13 +26,13 @@ INSERT INTO movie_category(movie_id, category_id) VALUES
                                                       (4, 6),
                                                       (4, 7);
 
-INSERT INTO showing(movie_id, theatre_id, start_time) VALUES
+INSERT IGNORE INTO showing(movie_id, theatre_id, start_time) VALUES
                                                           (1, 2, '2026-03-05 21:45'),
                                                           (2, 2, '2026-03-06 14:10'),
                                                           (3, 1, '2026-03-05 21:00'),
                                                           (4, 1, '2026-03-06 21:00');
 
-INSERT INTO customer(name, phone) VALUES
+INSERT IGNORE INTO customer(name, phone) VALUES
                                       ('Donald Trump', '+1 202 456-1111'),
                                       ('Mette Frederiksen', '+45 19101977'),
                                       ('Lars Kragh Andersen', '+45 1337903'),
@@ -47,7 +43,7 @@ INSERT INTO customer(name, phone) VALUES
                                       ('Mogens G', '+45 19262008'),
                                       ('Jeffrey Kennedy', '+92 1005 50002983');
 
-INSERT INTO reservation(customer_id, showing_id, reservation_time, status) VALUES
+INSERT IGNORE INTO reservation(customer_id, showing_id, reservation_time, status) VALUES
                                                                                (1, 3, NULL, 'CANCELLED'),
                                                                                (2, 2, NULL, 'CONFIRMED'),
                                                                                (3, 1, NULL, 'CANCELLED'),
@@ -58,7 +54,7 @@ INSERT INTO reservation(customer_id, showing_id, reservation_time, status) VALUE
                                                                                (8, 4, NULL, 'CONFIRMED'),
                                                                                (9, 4, NULL, 'CONFIRMED');
 
-INSERT INTO employee(role, name) VALUES
+INSERT IGNORE INTO employee(role, name) VALUES
                            ('SALES', 'Frodo Andersen'),
                            ('SALES', 'Mo Galko'),
                            ('INSPECTOR', 'Heidi Blåstrup'),

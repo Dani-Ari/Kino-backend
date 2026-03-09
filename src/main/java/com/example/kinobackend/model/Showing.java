@@ -1,5 +1,6 @@
 package com.example.kinobackend.model;
 
+import com.example.kinobackend.enums.ShowingStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -23,7 +24,8 @@ public class Showing {
     @Column(name = "start_time")
     private LocalDateTime startTime;
 
-    private String status = "ACTIVE";
+    @Enumerated(EnumType.STRING)
+    private ShowingStatus status = ShowingStatus.SCHEDULED;
 
     public int getId() {
         return id;
@@ -57,11 +59,11 @@ public class Showing {
         this.startTime = startTime;
     }
 
-    public String getStatus() {
+    public ShowingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ShowingStatus status) {
         this.status = status;
     }
 }

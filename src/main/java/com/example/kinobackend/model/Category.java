@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "theatre")
-public class Theatre {
+@Table(name = "category")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,20 +15,6 @@ public class Theatre {
     @NotBlank
     @Size(max = 100)
     private String name;
-
-    @Column(name = "row_count")
-    private int rowCount;
-
-    @Column(name = "seats_per_row")
-    private int seatsPerRow;
-
-    public int getRowCount() {
-        return rowCount;
-    }
-
-    public void setRowCount(int rowCount) {
-        this.rowCount = rowCount;
-    }
 
     public int getId() {
         return id;
@@ -45,14 +31,4 @@ public class Theatre {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getSeatsPerRow() {
-        return seatsPerRow;
-    }
-
-    public void setSeatsPerRow(int seatsPerRow) {
-        this.seatsPerRow = seatsPerRow;
-    }
 }
-
-

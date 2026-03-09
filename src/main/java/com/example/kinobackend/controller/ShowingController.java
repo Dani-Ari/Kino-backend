@@ -36,12 +36,6 @@ public class ShowingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(showingService.addShowing(showing));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteShowing(@PathVariable int id) {
-        showingService.deleteShowing(id);
-        return ResponseEntity.noContent().build();
-    }
-
     @PatchMapping("/{id}")
     public ResponseEntity<Void> cancelShowing(@PathVariable int id) {
         showingService.cancelShowing(id);
