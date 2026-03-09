@@ -1,17 +1,17 @@
 CREATE TABLE IF NOT EXISTS theatre (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    rows INT NOT NULL,
+    row_count INT NOT NULL,
     seats_per_row INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS seat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     theatre_id INT NOT NULL,
-    row_number INT NOT NULL,
+    row_index INT NOT NULL,
     seat_number INT NOT NULL,
     FOREIGN KEY (theatre_id) REFERENCES theatre(id),
-    UNIQUE (theatre_id, row_number, seat_number)
+    UNIQUE (theatre_id, row_index, seat_number)
 );
 
 CREATE TABLE IF NOT EXISTS movie (
