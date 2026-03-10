@@ -22,7 +22,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public List<Customer> findByPhone(String phone) {
-        return customerRepository.findCustomerByPhoneContaining(phone);
+    public Customer findByPhone(String phone) {
+        return customerRepository.findByPhone(phone);
     }
 }

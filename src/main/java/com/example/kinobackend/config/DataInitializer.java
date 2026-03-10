@@ -1,6 +1,8 @@
 package com.example.kinobackend.config;
 
 import com.example.kinobackend.enums.ReservationStatus;
+import com.example.kinobackend.enums.TicketStatus;
+import java.util.List;
 import com.example.kinobackend.model.*;
 import com.example.kinobackend.repository.*;
 import com.example.kinobackend.service.ShowingService;
@@ -21,18 +23,20 @@ public class DataInitializer implements ApplicationRunner {
     private final CategoryRepository categoryRepository;
     private final CustomerRepository customerRepository;
     private final ReservationRepository reservationRepository;
+    private final TicketRepository ticketRepository;
     private final EmployeeRepository employeeRepository;
 
     public DataInitializer(TheatreService theatreService, ShowingService showingService,
                            MovieRepository movieRepository, CategoryRepository categoryRepository,
                            CustomerRepository customerRepository, ReservationRepository reservationRepository,
-                           EmployeeRepository employeeRepository) {
+                           TicketRepository ticketRepository, EmployeeRepository employeeRepository) {
         this.theatreService = theatreService;
         this.showingService = showingService;
         this.movieRepository = movieRepository;
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
         this.reservationRepository = reservationRepository;
+        this.ticketRepository = ticketRepository;
         this.employeeRepository = employeeRepository;
     }
 
@@ -75,15 +79,23 @@ public class DataInitializer implements ApplicationRunner {
         Customer c9 = customerRepository.save(createCustomer("Jeffrey Kennedy", "+92 1005 50002983"));
 
         // Reservations
-        reservationRepository.save(createReservation(c1, s3, ReservationStatus.CANCELLED));
-        reservationRepository.save(createReservation(c2, s2, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c3, s1, ReservationStatus.CANCELLED));
-        reservationRepository.save(createReservation(c4, s4, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c5, s1, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c6, s3, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c7, s4, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c8, s4, ReservationStatus.CONFIRMED));
-        reservationRepository.save(createReservation(c9, s4, ReservationStatus.CONFIRMED));
+        Reservation r1 = reservationRepository.save(createReservation(c1, s3, ReservationStatus.CANCELLED));
+        Reservation r2 = reservationRepository.save(createReservation(c2, s2, ReservationStatus.CONFIRMED));
+        Reservation r3 = reservationRepository.save(createReservation(c3, s1, ReservationStatus.CANCELLED));
+        Reservation r4 = reservationRepository.save(createReservation(c4, s4, ReservationStatus.CONFIRMED));
+        Reservation r5 = reservationRepository.save(createReservation(c5, s1, ReservationStatus.CONFIRMED));
+        Reservation r6 = reservationRepository.save(createReservation(c6, s3, ReservationStatus.CONFIRMED));
+        Reservation r7 = reservationRepository.save(createReservation(c7, s4, ReservationStatus.CONFIRMED));
+        Reservation r8 = reservationRepository.save(createReservation(c8, s4, ReservationStatus.CONFIRMED));
+        Reservation r9 = reservationRepository.save(createReservation(c9, s4, ReservationStatus.CONFIRMED));
+
+        attachTickets(r2, 2);
+        attachTickets(r4, 3);
+        attachTickets(r5, 1);
+        attachTickets(r6, 2);
+        attachTickets(r7, 2);
+        attachTickets(r8, 1);
+        attachTickets(r9, 3);
 
         // Employees
         employeeRepository.save(createEmployee("SALES", "Frodo Andersen"));
@@ -116,6 +128,18 @@ public class DataInitializer implements ApplicationRunner {
         r.setReservationTime(Timestamp.from(Instant.now()));
         return r;
     }
+    private void attachTickets(Reservation reservation, int amount) {
+        List<Ticket> available = ticketRepository.findByShowingAndStatus(
+                reservation.getShowing(), TicketStatus.AVAILABLE);
+
+        for (int i = 0; i < amount && i < available.size(); i++) {
+            Ticket t = available.get(i);
+            t.setReservation(reservation);
+            t.setStatus(TicketStatus.RESERVED);
+            ticketRepository.save(t);
+        }
+    }
+
     private Employee createEmployee(String role, String name) {
         Employee e = new Employee(); e.setRole(role); e.setName(name); return e;
     }
