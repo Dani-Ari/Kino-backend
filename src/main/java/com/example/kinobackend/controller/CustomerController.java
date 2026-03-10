@@ -22,7 +22,7 @@ public class CustomerController {
     }
 
     @GetMapping("/search")
-    public List<Customer> searchByPhone(@RequestParam String phone) {
+    public Customer searchByPhone(@RequestParam String phone) {
         return customerService.findByPhone(phone);
     }
 

@@ -16,6 +16,7 @@ public class Customer {
     @Size(max = 255, message = "A name cannot contain more than 255 characters")
     private String name;
 
+    @Column(unique = true)
     @Size(max = 50, message = "A phone number cannot be longer than 50 characters")
     private String phone;
 

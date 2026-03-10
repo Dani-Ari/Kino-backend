@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "reservation")
@@ -28,6 +29,9 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus status = ReservationStatus.CONFIRMED;
+
+    @OneToMany(mappedBy = "reservation", fetch = FetchType.EAGER)
+    private List<Ticket> tickets;
 
     public int getId() {
         return id;
@@ -67,5 +71,13 @@ public class Reservation {
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
