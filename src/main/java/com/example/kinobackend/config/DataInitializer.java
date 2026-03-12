@@ -9,6 +9,7 @@ import com.example.kinobackend.service.ShowingService;
 import com.example.kinobackend.service.TheatreService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -16,6 +17,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Component
+@Profile("!docker")  // Add this line
 public class DataInitializer implements ApplicationRunner {
     private final TheatreService theatreService;
     private final ShowingService showingService;
