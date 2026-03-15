@@ -17,7 +17,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Component
-@Profile("!docker")  // Add this line
+//@Profile("!docker")  // Add this line
 public class DataInitializer implements ApplicationRunner {
     private final TheatreService theatreService;
     private final ShowingService showingService;

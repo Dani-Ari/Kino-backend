@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: .
+    container_name: kino-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - kino-network
+
+  frontend:
+    build: ../Kino-frontend
+    container_name: kino-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - kino-network
+
+networks:
+  kino-network:
+    driver: bridge
