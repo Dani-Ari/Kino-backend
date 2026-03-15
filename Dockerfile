@@ -2,6 +2,7 @@
 FROM eclipse-temurin:25-jdk-alpine AS builder
 WORKDIR /app
 COPY . .
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Runtime stage - use JRE 25
